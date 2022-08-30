@@ -59,7 +59,7 @@ switch ($message)
                         [ 'text' => 'Вторая в ряду', 'callback_data' => 'кнопки']
                     ],
                     [
-                        ['text' => 'Второй ряд', 'callback_data' => 'любое значение']
+                        [ 'text' => 'Второй ряд', 'callback_data' => 'любое значение']
                     ]
                 ]
             ]
