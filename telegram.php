@@ -47,8 +47,25 @@ switch ($message)
             ]
         ];
         break;
-
-
+        
+    case 'инлайн':
+        $method = 'sendMessage';
+        $send_data = [
+            'text'   => 'Вот мои инлайн кнопки',
+            'reply_markup' => [
+                'inline_keyboard' => [
+                    [
+                        [ 'text' => 'Первая в ряду', 'callback_data' => 'видео'],
+                        [ 'text' => 'Вторая в ряду', 'callback_data' => 'кнопки']
+                    ],
+                    [
+                        ['text' => 'Второй ряд', 'callback_data' => 'любое значение']
+                    ]
+                ]
+            ]
+        ];
+        break;
+ 
     case 'видео':
         $method = 'sendVideo';
         $send_data = [
