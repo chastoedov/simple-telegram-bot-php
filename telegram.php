@@ -112,6 +112,7 @@ function sendTelegram($method, $data, $headers = [])
     ]);   
     
     $result = curl_exec($curl);
+    //file_put_contents('file.txt', '$result: '.print_r($result, 1)."\n", FILE_APPEND);
     curl_close($curl);
     return (json_decode($result, 1) ? json_decode($result, 1) : $result);
 }
