@@ -95,7 +95,7 @@ switch ($message)
 }
 
 # Добавляем данные пользователя
-$send_data['chat_id'] = $data['chat']['id'];
+$send_data['chat_id'] = $data['chat']['id'] ?? $data['from']['id'];
 
 $res = sendTelegram($method, $send_data);
 
