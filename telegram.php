@@ -9,13 +9,13 @@ $data = json_decode(file_get_contents('php://input'), TRUE);
 
 
 # Обрабатываем ручной ввод или нажатие на кнопку
-$data = $data['callback_query'] ? $data['callback_query'] : $data['message'];
+$data = isset($data['callback_query']) ? $data['callback_query'] : $data['message'];
 
 # Важные константы
 define('TOKEN', '1310530208:AAHAKEpv_W9k3rWcO9G7ZOrJVcKHGEBqo6c');
 
 # Записываем сообщение пользователя
-$message = mb_strtolower(($data['text'] ? $data['text'] : $data['data']),'utf-8');
+$message = mb_strtolower((isset($data['text']) ? $data['text'] : $data['data']),'utf-8');
 
 
 # Обрабатываем сообщение
@@ -95,7 +95,7 @@ switch ($message)
 }
 
 # Добавляем данные пользователя
-$send_data['chat_id'] = $data['chat']['id'] ? $data['chat']['id'] : $data['from']['id'];
+$send_data['chat_id'] = isset($data['chat']['id']) ? $data['chat']['id'] : $data['from']['id'];
 
 $res = sendTelegram($method, $send_data);
 
@@ -114,5 +114,5 @@ function sendTelegram($method, $data, $headers = [])
     $result = curl_exec($curl);
     //file_put_contents('file.txt', '$result: '.print_r($result, 1)."\n", FILE_APPEND);
     curl_close($curl);
-    return (json_decode($result, 1) ? json_decode($result, 1) : $result);
+    return json_decode($result, 1) ?? $result ?? '';
 }
